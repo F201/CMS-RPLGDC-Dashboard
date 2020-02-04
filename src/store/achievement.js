@@ -36,7 +36,7 @@ export default {
         })
         .catch(err => {
           commit('LOADED');
-          console.log(err)
+          // console.log(err)
           // return err.response.data;
         });
     },
