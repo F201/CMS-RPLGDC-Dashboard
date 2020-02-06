@@ -5,9 +5,22 @@
     </v-card-title>
     <v-container>
       <v-row>
-        <v-col cols="3">
+        <v-col align="center" cols="3">
           <img v-if="icon" :src="icon" height="130" width="130" />
-          <img v-else src="@/assets/square.png" height="130" />
+          <img
+            v-else 
+            @click="pickFile"
+            src="@/assets/square.png"
+            height="130"
+          />
+          <input
+            type="file"
+            style="display: none"
+            ref="image"
+            accept="image/*"
+            required
+            @change="onChanged($event)"
+          />
         </v-col>
         <v-col>
           <v-text-field
@@ -59,7 +72,7 @@
           <v-layout row wrap align-center justify-center class="pt-2">
             <v-flex xs12 class="pr-2 pl-2">
               <vue-cropper
-                ref="cropper"
+                :ref="'cropper'"
                 alt="Source Image"
                 drag-mode="crop"
                 :src="icon"
@@ -69,8 +82,7 @@
                 :min-container-width="250"
                 :min-container-height="180"
                 :img-style="{ width: '300px', height: '300px' }"
-              >
-              </vue-cropper>
+              />
               <v-flex class="pt-2">
                 <v-btn @click="rotate" v-if="icon != ''">Rotate</v-btn>
               </v-flex>
@@ -79,14 +91,14 @@
         </v-container>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="cropmodal = false">
+          <v-btn color="blue darken-1" text @click="cropmodal = false">
             Close
           </v-btn>
           <v-btn
             color="blue darken-1"
-            flat
+            text
             @click="cropImage"
-            v-if="photo != null || photo_edit != null"
+            v-if="photo != null"
           >
             Crop
           </v-btn>
@@ -119,19 +131,21 @@ export default {
       this.$refs.image.click();
     },
     onChanged(event) {
+      this.cropmodal = true;
       if (event.target.files.length){
         this.photo = event.target.files[0];
-        this.$refs.cropper.replace(URL.createObjectURL(this.photo));
-        this.cropmodal = true;
+        this.$nextTick(function () {
+          this.$refs.cropper.replace(URL.createObjectURL(this.photo));
+        })
       }
     },
     cropImage() {
       const icon = this.$refs.cropper.getCroppedCanvas().toDataURL();
-      this.isEdit ? this.icon_edit = icon : this.icon = icon;
-      const photoName = this.isEdit ? this.photo_edit.name : this.photo.name
+      this.icon = icon;
+      const photoName = this.photo.name;
       this.$refs.cropper.getCroppedCanvas().toBlob(blob => {
         const fileUpload = new File([blob], photoName);
-        this.isEdit ? this.photo_edit = fileUpload : this.photo = fileUpload;
+        this.photo = fileUpload;
       });
       this.cropmodal = false;
     },

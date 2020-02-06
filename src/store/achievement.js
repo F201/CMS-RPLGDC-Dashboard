@@ -37,7 +37,7 @@ export default {
         .catch(err => {
           commit('LOADED');
           // console.log(err)
-          // return err.response.data;
+          return err.response.data;
         });
     },
   },
