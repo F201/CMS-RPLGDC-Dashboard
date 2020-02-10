@@ -16,9 +16,9 @@ export default {
       to: '/organization'
     },
     {
-      icon: 'mdi-account-tie',
-      title: 'Organization',
-      to: '/products'
+      icon: 'mdi-electron-framework',
+      title: 'Tool',
+      to: '/tool'
     },
     {
       icon: 'mdi-trophy',

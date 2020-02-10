@@ -4,6 +4,7 @@ import menu from '../utils/menu';
 import achievement from './achievement';
 import recruitment from './recruitment';
 import organization from './organization';
+import tool from './tool';
 
 Vue.use(Vuex);
 
@@ -11,7 +12,8 @@ export default new Vuex.Store({
   modules: {
     achievement,
     organization,
-    recruitment
+    recruitment,
+    tool
   },
   state: {
     sidebar: true,

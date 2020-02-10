@@ -3,6 +3,7 @@ import token from '../utils/token';
 import achievement from './achievement';
 import recruitment from './recruitment';
 import organization from './organization';
+import tool from './tool';
 
 export const ApiGeneral = axios.create({
   baseURL: process.env.VUE_APP_URL,
@@ -19,5 +20,6 @@ if (token.exists()) {
 export default {
   achievement,
   organization,
-  recruitment
+  recruitment,
+  tool
 };

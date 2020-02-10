@@ -50,6 +50,14 @@ const routes = [
         }
       },
       {
+        path: '/tool',
+        name: 'tool',
+        component: () => import('../views/pages/tool/Tool.vue'),
+        meta: {
+          middleware: { auth: true },
+        }
+      },
+      {
         path: '/organization',
         name: 'organization',
         component: () => import('../views/pages/organization/Organization.vue'),

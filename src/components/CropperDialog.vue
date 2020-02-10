@@ -1,11 +1,11 @@
 <template>
   <div>
-    <img @click="pickFile" v-if="icon" :src="icon" height="130" width="130" />
+    <img @click="pickFile" v-if="icon" :src="icon" width="130" />
     <img
       v-else 
       @click="pickFile"
       src="@/assets/square.png"
-      height="130"
+      width="130"
     />
     <ValidationProvider rules="required|image" ref="imgPicker" v-slot="{ errors }">
       <input
@@ -123,9 +123,12 @@ export default {
   },
   watch: {
     value(newVal) {
+      if (newVal !== undefined) {
+        this.disabled = newVal.disabled ? newVal.disabled : false;
+      };
       if (newVal !== undefined && newVal.icon) {
         this.icon = newVal.icon;
-        this.disabled = newVal.disabled ? newVal.disabled : false;
+        
       }
     }
   }
