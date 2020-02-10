@@ -49,6 +49,22 @@ const routes = [
           middleware: { auth: true },
         }
       },
+      {
+        path: '/organization',
+        name: 'organization',
+        component: () => import('../views/pages/organization/Organization.vue'),
+        meta: {
+          middleware: { auth: true },
+        }
+      },
+      {
+        path: '/recruitment',
+        name: 'recruitment',
+        component: () => import('../views/pages/recruitment/Recruitment.vue'),
+        meta: {
+          middleware: { auth: true },
+        }
+      },
     ]
   },
 ];

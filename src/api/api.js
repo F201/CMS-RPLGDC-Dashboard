@@ -1,12 +1,11 @@
 import axios from 'axios';
 import token from '../utils/token';
-import achievement from './achievement'; 
-
-const TIMEOUT = 12000;
+import achievement from './achievement';
+import recruitment from './recruitment';
+import organization from './organization';
 
 export const ApiGeneral = axios.create({
   baseURL: process.env.VUE_APP_URL,
-  timeout: TIMEOUT
 });
 
 export const setAccessToken = token => {
@@ -18,5 +17,7 @@ if (token.exists()) {
 }
 
 export default {
-  achievement
+  achievement,
+  organization,
+  recruitment
 };

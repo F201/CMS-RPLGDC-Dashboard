@@ -3,11 +3,19 @@ import App from "./App.vue";
 import router from "./router/router";
 import store from "./store/store";
 import vuetify from "./plugins/vuetify";
-
-
 import VueCropper from 'vue-cropperjs';
+import "./plugins/vee-validate";
 import 'cropperjs/dist/cropper.css';
-Vue.component('vue-cropper',VueCropper);
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
+const options = {
+  confirmButtonColor: '#fc6e20',
+};
+
+Vue.use(VueSweetalert2, options);
+Vue.component('vuew-VueCropper');
+// Vue.component('ValidationProvider', ValidationProvider);
 
 Vue.config.productionTip = false;
 
