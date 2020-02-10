@@ -60,10 +60,12 @@ export default {
       this.$store.commit('organization/VIEWED');
     },
     fetch() {
+      this.formData = {
+        img: {disabled: true},
+        disabled: true
+      };
       this.$store.dispatch('organization/getDetailOrganization', this.id).then(data => {
-        console.log(data)
         this.formData = {
-          // ...data,
           id: data.id_org_structures,
           name: data.nama_org_structures,
           jabatan: data.posisi_org_structures,
@@ -72,11 +74,12 @@ export default {
             photo: null,
           },
           order: data.order_org_structures,
+          disabled: false
         }
       });
     }
   },
-  created() {
+  mounted() {
     this.fetch();
   }
 }

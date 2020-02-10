@@ -73,6 +73,7 @@ export default {
     },
   },
   data: () => ({
+    tab: null,
     search: '',
     items: [
       { name: 'nama'}

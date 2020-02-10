@@ -40,19 +40,19 @@ export default {
     order: 0,
     icon: '',
     photo: null,
-    formData: {
-      disabled: true
-    },
+    formData: null,
   }),
   methods: {
     close() {
       this.$store.commit('organization/VIEWED');
     },
     fetch() {
+      this.formData = {
+        img: {disabled: true},
+        disabled: true
+      };
       this.$store.dispatch('organization/getDetailOrganization', this.id).then(data => {
-        console.log(data)
         this.formData = {
-          // ...data,
           name: data.nama_org_structures,
           jabatan: data.posisi_org_structures,
           img: {
@@ -66,7 +66,7 @@ export default {
       });
     }
   },
-  created() {
+  mounted() {
     this.fetch();
   }
 }
