@@ -52,14 +52,11 @@ export default {
       return api.division
         .getDetailDivision(params)
         .then(({ data }) => {
-          // console.log(data)
           commit('LOADED');
           commit('SET_DIVISION_DETAIL', {
             id: data.division[0].id_divisi,
             name: data.division[0].nama_divisi,
             deskripsi: data.division[0].deskripsi,
-            studyGroup: data.division[0].studyGroup,
-            brainspark: data.division[0].brainspark,
             tools: data.division[0].tools,
             img: {
               icon: data.division[0].gambar_divisi,
@@ -68,7 +65,7 @@ export default {
             },
             readonly: true
           })
-          return data.data;
+          return data;
         })
         .catch(() => {
           commit('LOADED');
