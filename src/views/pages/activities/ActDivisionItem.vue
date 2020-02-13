@@ -3,19 +3,19 @@
     <template v-slot:default="{ hover }">
       <v-card outlined>
         <v-img
-          :src="toolItem.gambar_tools"
+          :src="divisionItem.gambar_divisi"
           height="70"
           max-width="70"
           contain
         />
-        {{toolItem.nama_tools}}
+        {{divisionItem.nama_divisi}}
         <v-fade-transition>
           <v-overlay
             v-if="hover"
             absolute
             color="primary"
           >
-            <v-btn @click="deleteTools(toolItem.idx)" fab x-small color="red"><v-icon dark>mdi-close</v-icon></v-btn>
+            <v-btn @click="deleteTools(divisionItem.idx)" fab x-small color="red"><v-icon dark>mdi-close</v-icon></v-btn>
           </v-overlay>
         </v-fade-transition>
       </v-card>
@@ -25,14 +25,14 @@
 
 <script>
 export default {
-  props: ['productId', 'toolItem'],
+  props: ['activitiesId', 'divisionItem'],
   data: () => ({
 
   }),
   methods: {
     deleteTools(id) {
-      this.$store.dispatch('productTool/deleteProductTool', id).then(() => {
-        this.$store.dispatch('product/getDetailProduct', this.productId)
+      this.$store.dispatch('actDivision/deleteActDivision', id).then(() => {
+        this.$store.dispatch('activities/getDetailActivities', this.activitiesId)
       });
     }
   }

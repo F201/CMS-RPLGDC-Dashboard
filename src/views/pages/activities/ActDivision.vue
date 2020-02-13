@@ -3,10 +3,10 @@
     <v-row no-gutters justify="center">
       <v-col cols="7" offset="3">
         <v-row align="center" class="my-2">
-          <v-col class="body-1" cols="auto">Member</v-col>
+          <v-col class="body-1" cols="auto">Division</v-col>
           <v-spacer></v-spacer>
           <v-col cols="auto">
-            <v-btn @click="addMember()" color="primary" text>Add Member</v-btn>
+            <v-btn @click="addDivision()" color="primary" text>Add Division</v-btn>
           </v-col>
         </v-row>
         <v-card outlined class="pa-3">
@@ -26,7 +26,7 @@
       </v-col>
     </v-row>
     <v-dialog v-model="isPopup" max-width="500px">
-      <achiev-member-add v-if="isPopup" :id_activities="id"/>
+      <act-division-add v-if="isPopup" :id_activities="id"/>
     </v-dialog>
   </v-container>
 </template>
@@ -39,7 +39,7 @@ import { mapGetters } from 'vuex';
 export default {
   props: ['id', 'divisionList'],
   components: {
-    AchievMemberAdd,
+    ActDivisionAdd,
     ActDivisionItem
   },
   data: () => ({
@@ -50,7 +50,7 @@ export default {
     }),
     isPopup: {
       get: function() {
-        return this.$store.getters['actDivision/addingMember'];
+        return this.$store.getters['actDivision/addingDivision'];
       },
       set: function() {
         this.detailId = null;
@@ -59,7 +59,7 @@ export default {
     },
   },
   methods: {
-    addMember() {
+    addDivision() {
       this.$store.commit('actDivision/ADDING_DIVISION');
     },
     fetch() {

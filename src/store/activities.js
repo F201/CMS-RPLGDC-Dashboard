@@ -35,11 +35,11 @@ export default {
   actions: {
     getAllActivities({ commit }) {
       commit('LOADING');
-      return api.achievement
+      return api.activities
         .getAllActivities()
         .then(({ data }) => {
           commit('LOADED');
-          commit('SET_ACHIEVEMENT', data.data)
+          commit('SET_ACTIVITIES', data.data)
           return data;
         })
         .catch(err => {
@@ -54,7 +54,7 @@ export default {
         .getDetailActivities(data)
         .then(({ data }) => {
           commit('LOADED');
-          commit('SET_ACHIEVEMENT_DETAIL', {
+          commit('SET_ACTIVITIES_DIVISION', {
             id: data.activities[0].id_activities,
             name: data.activities[0].nama_activities,
             tanggal: data.activities[0].tanggal,
@@ -63,16 +63,17 @@ export default {
             img: {
               icon: data.activities[0].gambar_activities,
               photo: null,
-              readonly: true
+              readonly: true,
+              ratio: 4 / 3
             },
             readonly: true
           });
           return data;
         })
-        .catch(err => {
+        .catch(() => {
           commit('LOADED');
           // // console.log(err)
-          return err.response.data;
+          return false;
         });
     },
     createActivities({commit}, data) {

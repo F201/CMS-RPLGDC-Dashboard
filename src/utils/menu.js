@@ -34,6 +34,11 @@ export default {
       icon: 'mdi-trophy',
       title: 'Achievement',
       to: '/achievement'
+    },
+    {
+      icon: 'mdi-teach',
+      title: 'Activities',
+      to: '/activities'
     }
   ]
 };

@@ -42,6 +42,14 @@ const routes = [
         }
       },
       {
+        path: '/activities',
+        name: 'activities',
+        component: () => import('../views/pages/activities/Activities.vue'),
+        meta: {
+          middleware: { auth: true },
+        }
+      },
+      {
         path: '/achievement',
         name: 'achievement',
         component: () => import('../views/pages/achievement/Achievement.vue'),

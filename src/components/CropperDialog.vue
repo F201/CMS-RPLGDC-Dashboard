@@ -34,8 +34,8 @@
                 drag-mode="crop"
                 :src="icon"
                 :view-mode="2"
-                :aspectRatio="1 / 1"
-                :initialAspectRatio="1 / 1"
+                :aspectRatio="ratio"
+                
                 :min-container-width="250"
                 :min-container-height="180"
                 :img-style="{ width: '300px', height: '300px' }"
@@ -80,6 +80,7 @@ export default {
     cropmodal: false,
     icon: '',
     photo: null,
+    ratio: 1/1,
     readonly: false
   }),
   methods: {
@@ -119,6 +120,11 @@ export default {
     },
     emitChange() {
       this.$emit('input', {photo: this.photo});
+    },
+    changeVal(newVal) {
+      if (newVal.ratio) {
+        this.ratio = newVal.ratio ? newVal.ratio : 1 / 1;
+      };
     }
   },
   watch: {
@@ -128,9 +134,13 @@ export default {
       };
       if (newVal !== undefined && newVal.icon) {
         this.icon = newVal.icon;
-        
+        this.ratio = newVal.ratio ? newVal.ratio : 1 / 1;
       }
     }
+  },
+  created() {
+    // console.log('hehe',this.value, this.value)
+    this.changeVal(this.value);
   }
 }
 </script>

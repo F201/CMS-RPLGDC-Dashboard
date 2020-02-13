@@ -5,7 +5,7 @@
         <span class="headline">Detail Achievement</span>
       </v-card-title>
       <activities-form v-model="actDetails"/>
-      <achiev-member :id="id" :divisionList="actDetails.division" />
+      <act-division :id="id" :divisionList="actDetails.divisions" />
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="primary darken-1" text @click="close">Close</v-btn>
@@ -46,10 +46,10 @@ export default {
   },
   methods: {
     close() {
-      this.$store.commit('achievement/VIEWED');
+      this.$store.commit('activities/VIEWED');
     },
     fetch() {
-      this.$store.dispatch('achievement/getDetailAchievement', this.id);
+      this.$store.dispatch('activities/getDetailActivities', this.id);
     }
   },
   mounted() {

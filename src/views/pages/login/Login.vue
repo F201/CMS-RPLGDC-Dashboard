@@ -100,7 +100,7 @@ export default {
       if (isValid) {
         let credentials = this.loginData;
         this.$store.dispatch('auth/login', credentials).then(data => {
-          if (data.error) {
+          if (data.status === 'error') {
             this.$swal('Failed Login', `Wrong Credential!`, 'error').then(() => {
               this.loginData.password = '';
             });

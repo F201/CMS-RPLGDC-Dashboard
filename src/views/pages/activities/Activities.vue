@@ -112,7 +112,6 @@ export default {
       { text: 'Foto', value: 'gambar_activities' },
       { text: 'Nama', align: 'left', value: 'nama_activities' },
       { text: 'Tanggal', value: 'tanggal' },
-      { text: 'Deskripsi', value: 'deskripsi' },
       { text: 'Action', value: 'action' }
     ]
   }),

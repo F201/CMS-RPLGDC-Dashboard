@@ -48,9 +48,7 @@ export default {
     ValidationProvider
   },
   data: () => ({
-    nama: '',
-    jurusan: '',
-    angkatan: null,
+    divSelected: '',
   }),
   computed: {
     ...mapGetters({
@@ -78,5 +76,8 @@ export default {
       this.$store.commit('actDivision/ADDED_DIVISION');
     }
   },
+  mounted() {
+    this.$store.dispatch('division/getAllDivision');
+  }
 }
 </script>

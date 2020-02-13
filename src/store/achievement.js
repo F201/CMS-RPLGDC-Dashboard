@@ -64,7 +64,8 @@ export default {
             img: {
               icon: data.achievement[0].foto_achievement,
               photo: null,
-              readonly: true
+              readonly: true,
+              ratio: 4 / 3
             },
             readonly: true
           });
