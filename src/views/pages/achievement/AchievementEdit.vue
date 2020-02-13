@@ -69,7 +69,6 @@ export default {
         readonly: true
       };
       this.$store.dispatch('achievement/getDetailAchievement', this.id).then(data => {
-        console.log(data)
         if (data) {
           this.formData = {
             id: data.achievement[0].id_achievement,
