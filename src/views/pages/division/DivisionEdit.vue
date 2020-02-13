@@ -60,14 +60,12 @@ export default {
       };
       this.$store.dispatch('division/getDetailDivision', this.id).then(data => {
         this.formData = {
-          id: data.id_divisi,
-          name: data.nama_divisi,
-          deskripsi: data.deskripsi,
-          studyGroup: '',
-          brainspark: '',
+          id: data.division[0].id_divisi,
+          name: data.division[0].nama_divisi,
+          deskripsi: data.division[0].deskripsi,
           img: {
             required: false,
-            icon: data.gambar_divisi,
+            icon: data.division[0].gambar_divisi,
             photo: null,
           },
           readonly: false
