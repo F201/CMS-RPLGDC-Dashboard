@@ -42,9 +42,65 @@ const routes = [
         }
       },
       {
+        path: '/activities',
+        name: 'activities',
+        component: () => import('../views/pages/activities/Activities.vue'),
+        meta: {
+          middleware: { auth: true },
+        }
+      },
+      {
         path: '/achievement',
         name: 'achievement',
         component: () => import('../views/pages/achievement/Achievement.vue'),
+        meta: {
+          middleware: { auth: true },
+        }
+      },
+      {
+        path: '/tool',
+        name: 'tool',
+        component: () => import('../views/pages/tool/Tool.vue'),
+        meta: {
+          middleware: { auth: true },
+        }
+      },
+      {
+        path: '/division',
+        name: 'division',
+        component: () => import('../views/pages/division/Division.vue'),
+        meta: {
+          middleware: { auth: true },
+        }
+      },
+      {
+        path: '/news',
+        name: 'news',
+        component: () => import('../views/pages/news/News.vue'),
+        meta: {
+          middleware: { auth: true },
+        }
+      },
+      {
+        path: '/product',
+        name: 'product',
+        component: () => import('../views/pages/product/Product.vue'),
+        meta: {
+          middleware: { auth: true },
+        }
+      },
+      {
+        path: '/organization',
+        name: 'organization',
+        component: () => import('../views/pages/organization/Organization.vue'),
+        meta: {
+          middleware: { auth: true },
+        }
+      },
+      {
+        path: '/recruitment',
+        name: 'recruitment',
+        component: () => import('../views/pages/recruitment/Recruitment.vue'),
         meta: {
           middleware: { auth: true },
         }

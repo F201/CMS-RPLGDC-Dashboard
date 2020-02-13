@@ -6,9 +6,44 @@ export default {
       to: '/'
     },
     {
+      icon: 'mdi-file-account',
+      title: 'Recruitment',
+      to: '/recruitment'
+    },
+    {
+      icon: 'mdi-newspaper-variant',
+      title: 'News',
+      to: '/news'
+    },
+    {
+      icon: 'mdi-account-tie',
+      title: 'Organization',
+      to: '/organization'
+    },
+    {
+      icon: 'mdi-office-building',
+      title: 'Division',
+      to: '/division'
+    },
+    {
+      icon: 'mdi-package',
+      title: 'Product',
+      to: '/product'
+    },
+    {
+      icon: 'mdi-electron-framework',
+      title: 'Tool',
+      to: '/tool'
+    },
+    {
       icon: 'mdi-trophy',
       title: 'Achievement',
       to: '/achievement'
+    },
+    {
+      icon: 'mdi-teach',
+      title: 'Activities',
+      to: '/activities'
     }
   ]
 };
