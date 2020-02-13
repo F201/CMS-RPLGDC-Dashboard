@@ -52,6 +52,7 @@ export default {
       return api.division
         .getDetailDivision(params)
         .then(({ data }) => {
+          // console.log(data)
           commit('LOADED');
           commit('SET_DIVISION_DETAIL', {
             id: data.division[0].id_divisi,
