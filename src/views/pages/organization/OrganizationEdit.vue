@@ -70,6 +70,7 @@ export default {
           name: data.nama_org_structures,
           jabatan: data.posisi_org_structures,
           img: {
+            required: false,
             icon: data.foto_org_structures,
             photo: null,
           },

@@ -11,6 +11,11 @@ export default {
       to: '/recruitment'
     },
     {
+      icon: 'mdi-newspaper-variant',
+      title: 'News',
+      to: '/news'
+    },
+    {
       icon: 'mdi-account-tie',
       title: 'Organization',
       to: '/organization'

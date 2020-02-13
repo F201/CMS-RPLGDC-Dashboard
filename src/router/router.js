@@ -74,6 +74,14 @@ const routes = [
         }
       },
       {
+        path: '/news',
+        name: 'news',
+        component: () => import('../views/pages/news/News.vue'),
+        meta: {
+          middleware: { auth: true },
+        }
+      },
+      {
         path: '/product',
         name: 'product',
         component: () => import('../views/pages/product/Product.vue'),

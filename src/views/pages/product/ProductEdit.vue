@@ -64,6 +64,7 @@ export default {
         this.formData = {
           name: data.nama_products,
           img: {
+            required: false,
             icon: data.gambar_products,
             photo: null,
           },

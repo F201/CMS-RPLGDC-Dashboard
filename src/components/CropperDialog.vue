@@ -7,13 +7,12 @@
       src="@/assets/square.png"
       width="130"
     />
-    <ValidationProvider rules="required|image" ref="imgPicker" v-slot="{ errors }">
+    <ValidationProvider :rules="`image|${required ? 'required': ''}`" ref="imgPicker" v-slot="{ errors }">
       <input
         type="file"
         style="display: none"
         ref="image"
         accept="image/*"
-        required
         @change="onChanged($event)"
       />
       <div class="caption red--text">
@@ -78,6 +77,7 @@ export default {
   },
   data: () => ({
     cropmodal: false,
+    required: true,
     icon: '',
     photo: null,
     ratio: 1/1,
@@ -131,6 +131,7 @@ export default {
     value(newVal) {
       if (newVal !== undefined) {
         this.readonly = newVal.readonly ? newVal.readonly : false;
+        this.required = newVal.required ? true : false;
       };
       if (newVal !== undefined && newVal.icon) {
         this.icon = newVal.icon;

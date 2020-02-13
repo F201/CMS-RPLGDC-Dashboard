@@ -6,6 +6,7 @@ import activities from './activities';
 import actDivision from './actDivision';
 import division from './division';
 import divisionTool from './divisionTool';
+import news from './news';
 import recruitment from './recruitment';
 import organization from './organization';
 import tool from './tool';
@@ -41,6 +42,7 @@ export default {
   achievMember,
   division,
   divisionTool,
+  news,
   organization,
   recruitment,
   tool,

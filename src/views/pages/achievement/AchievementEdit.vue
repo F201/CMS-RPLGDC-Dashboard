@@ -78,6 +78,7 @@ export default {
             peringkat: data.achievement[0].peringkat,
             nama_lomba: data.achievement[0].nama_lomba,
             img: {
+              required: false,
               ratio: 4/3,
               icon: data.achievement[0].foto_achievement,
               photo: null,
