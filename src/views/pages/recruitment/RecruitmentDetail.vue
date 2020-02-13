@@ -35,10 +35,49 @@
     <v-card-actions>
       <v-row no-gutters>
         <v-col align="center">
-          <v-btn class="mx-2" color="green" dark v-if="!status1" @click="onLolos(1)">Lolos Tahap 1</v-btn>
-          <v-btn class="mx-2" color="red" dark v-else-if="status1 && !status2" outlined @click="onUndo(1)">Undo Tahap 1</v-btn>
-          <v-btn class="mx-2" color="green" dark v-if="status1 && !status2" outlined @click="onLolos(2)">Lolos Tahap 2</v-btn>
-          <v-btn class="mx-2" color="red" dark v-else-if="status1 && status2" outlined @click="onUndo(2)">Undo Tahap 2</v-btn>
+          <v-btn 
+            class="mx-2" 
+            color="green" 
+            dark 
+            v-if="!status1" 
+            @click="onLolos(1)"
+            :disabled="loading"
+          >
+            Lolos Tahap 1
+          </v-btn>
+          <v-btn 
+            class="mx-2" 
+            color="red" 
+            dark 
+            v-else-if="status1 && !status2" 
+            outlined 
+            @click="onUndo(1)"
+            :disabled="loading"
+          >
+            Undo Tahap 1
+          </v-btn>
+          <v-btn 
+            class="mx-2" 
+            color="green" 
+            dark 
+            v-if="status1 && !status2" 
+            outlined 
+            @click="onLolos(2)"
+            :disabled="loading"
+          >
+            Lolos Tahap 2
+          </v-btn>
+          <v-btn 
+            class="mx-2" 
+            color="red" 
+            dark 
+            v-else-if="status1 && status2" 
+            outlined 
+            @click="onUndo(2)"
+            :disabled="loading"
+          >
+            Undo Tahap 2
+          </v-btn>
         </v-col>
       </v-row>
       <!-- <v-spacer></v-spacer> -->
@@ -49,6 +88,7 @@
 
 <script>
 import RecruitmentForm from './RecruitmentForm';
+import { mapGetters } from 'vuex';
 
 export default {
   props: ['id'],
@@ -60,15 +100,26 @@ export default {
     status1: false,
     status2: false
   }),
+  computed: {
+    ...mapGetters({
+      loading: 'recruitment/loading'
+    })
+  },
   methods: {
-    onLolos(step) {
-      if (step === 1) this.$store.dispatch('recruitment/setLulusThp1', this.id);
-      else this.$store.dispatch('recruitment/setLulusThp2', this.id);
+    async onLolos(step) {
+      const res = (step === 1) 
+        ? this.$store.dispatch('recruitment/setLulusThp1', this.id)
+        : this.$store.dispatch('recruitment/setLulusThp2', this.id);
+      if (res) this.$swal('Success', `Success edit status: ${this.formData.nim}`, 'success')
+      else this.$swal('Error', 'Error on create data!', 'error')
       this.fetch()
     },
-    onUndo(step) {
-      if (step === 1) this.$store.dispatch('recruitment/undoLulusThp1', this.id);
-      else this.$store.dispatch('recruitment/undoLulusThp2', this.id);
+    async onUndo(step) {
+      const res = (step === 1) 
+        ? this.$store.dispatch('recruitment/undoLulusThp1', this.id)
+        : this.$store.dispatch('recruitment/undoLulusThp2', this.id);
+      if (res) this.$swal('Success', `Success edit status: ${this.formData.nim}`, 'success')
+      else this.$swal('Error', 'Error on create data!', 'error')
       this.fetch()
     },
     fetch() {
@@ -76,7 +127,7 @@ export default {
         this.status1= res.status1,
         this.status2= res.status2,
         this.formData = {
-          name: res.nama_tools,
+          name: res.nama_lengkap,
           nim: res.nim,
           divisi: res.divisi,
           angkatan: res.angkatan,

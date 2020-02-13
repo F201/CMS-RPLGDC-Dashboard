@@ -42,10 +42,10 @@ export default {
           commit('SET_ACTIVITIES', data.data)
           return data;
         })
-        .catch(err => {
+        .catch(() => {
           commit('LOADED');
           // // console.log(err)
-          return err.response.data;
+          return false;
         });
     },
     getDetailActivities({ commit }, data) {
@@ -94,7 +94,7 @@ export default {
     deleteActivities({commit}, data) {
       commit('LOADING');
       return api.activities
-        .deleteAchievement(data)
+        .deleteActivities(data)
         .then(({data}) => {
           commit('LOADED');
           return data;

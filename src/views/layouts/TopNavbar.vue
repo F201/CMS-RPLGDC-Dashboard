@@ -5,7 +5,7 @@
       :clipped-left="$vuetify.breakpoint.mdAndUp"
     >
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
-        <v-row no-gutters align="center headline ">
+        <v-row no-gutters align="center">
           <v-col cols="2">
             <v-app-bar-nav-icon @click.stop="toggleSidebar()"></v-app-bar-nav-icon>
             <!-- iGadis -->
@@ -53,20 +53,19 @@
         <v-list>
           <v-list-item>
             <v-list-item-avatar>
-              <v-avatar size="40" color="secondary">
+              <v-avatar size="40" color="primary">
               <v-icon dark>mdi-account</v-icon>
               </v-avatar>
               <!-- <img :src="avatarImageUrl" :alt="user.name" /> -->
             </v-list-item-avatar>
             <v-list-item-content v-if="user">
-              <v-list-item-title>{{ user.name }}</v-list-item-title>
-              <v-list-item-subtitle>{{ user.email }}</v-list-item-subtitle>
+              <v-list-item-title>{{ user.username }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="accent" text @click="logout">Logout</v-btn>
+          <v-btn color="primary" text @click="logout">Logout</v-btn>
         </v-card-actions>
       </v-card>
     </v-menu>
