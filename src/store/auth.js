@@ -34,7 +34,7 @@ export default {
         .then(({ data }) => {
           commit('LOADED');
           // if (!data.error) {
-          console.log(data)
+          // console.log(data)
           token.set(data.token);
           setAccessToken(data.token);
           commit('SET_LOGEDIN', true);
@@ -45,9 +45,10 @@ export default {
           //   return data;
           // }
         })
-        .catch(err => {
+        .catch(() => {
           commit('LOADED');
-          console.log(err)
+          return false;
+          // console.log(err)
         });
     },
     logout({ commit }) {

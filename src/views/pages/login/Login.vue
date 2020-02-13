@@ -112,7 +112,7 @@ export default {
     }
   },
   created() {
-    // console.log(this.$vuetify.breakpoint)
+    // // console.log(this.$vuetify.breakpoint)
   }
 }
 </script>

@@ -45,7 +45,7 @@ export default {
         readonly: true
       };
       this.$store.dispatch('product/getDetailProduct', this.id).then(data => {
-        console.log(data)
+        // console.log(data)
         if (data) {
           this.formData = {
               id: data.id_products,

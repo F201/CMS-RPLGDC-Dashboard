@@ -152,7 +152,7 @@ export default {
     //     type: 'image/jpeg'
     //   };
     //   let file = new File([dataImg], "test.jpg", metadata);
-    //   console.log(file)
+    //   // console.log(file)
     // });
   }
 };

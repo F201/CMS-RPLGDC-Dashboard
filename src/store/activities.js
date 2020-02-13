@@ -44,7 +44,7 @@ export default {
         })
         .catch(err => {
           commit('LOADED');
-          // console.log(err)
+          // // console.log(err)
           return err.response.data;
         });
     },
@@ -71,7 +71,7 @@ export default {
         })
         .catch(err => {
           commit('LOADED');
-          // console.log(err)
+          // // console.log(err)
           return err.response.data;
         });
     },
@@ -83,9 +83,10 @@ export default {
           commit('LOADED');
           return data;
         })
-        .catch(err => {
+        .catch(() => {
           commit('LOADED');
-          console.log(err, err.response)
+          return false
+          // console.log(err, err.response)
           // return err.response.data;
         });
     },
@@ -97,9 +98,10 @@ export default {
           commit('LOADED');
           return data;
         })
-        .catch(err => {
+        .catch(() => {
           commit('LOADED');
-          console.log(err, err.response)
+          return false;
+          // console.log(err, err.response)
           // return err.response.data;
         });
     },
@@ -111,9 +113,10 @@ export default {
           commit('LOADED');
           return data;
         })
-        .catch(err => {
+        .catch(() => {
           commit('LOADED');
-          console.log(err, err.response)
+          return false
+          // console.log(err, err.response)
           // return err.response.data;
         });
     }

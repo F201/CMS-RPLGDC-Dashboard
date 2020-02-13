@@ -44,7 +44,7 @@ export default {
         })
         .catch(err => {
           commit('LOADED');
-          // console.log(err)
+          // // console.log(err)
           return err.response.data;
         });
     },
@@ -53,7 +53,7 @@ export default {
       return api.achievement
         .getDetailAchievement(data)
         .then(({ data }) => {
-          console.log(data)
+          // console.log(data)
           commit('LOADED');
           commit('SET_ACHIEVEMENT_DETAIL', {
             id: data.achievement[0].id_achievement,
@@ -68,12 +68,12 @@ export default {
             },
             readonly: true
           });
-          console.log(data)
+          // console.log(data)
           return data;
         })
         .catch(err => {
           commit('LOADED');
-          // console.log(err)
+          // // console.log(err)
           return err.response.data;
         });
     },
@@ -85,9 +85,10 @@ export default {
           commit('LOADED');
           return data;
         })
-        .catch(err => {
+        .catch(() => {
           commit('LOADED');
-          console.log(err, err.response)
+          return false;
+          // console.log(err, err.response)
           // return err.response.data;
         });
     },
@@ -99,9 +100,10 @@ export default {
           commit('LOADED');
           return data;
         })
-        .catch(err => {
+        .catch(() => {
           commit('LOADED');
-          console.log(err, err.response)
+          return false;
+          // console.log(err, err.response)
           // return err.response.data;
         });
     }

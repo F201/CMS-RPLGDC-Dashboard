@@ -47,7 +47,7 @@ export const registerMiddleware = (router, store) => {
             }
           });
         } else {
-          // console.log('ro')
+          // // console.log('ro')
           // next();
           const res = await store.dispatch('auth/userDetail');
           if (!res) {

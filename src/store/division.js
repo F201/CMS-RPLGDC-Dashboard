@@ -40,9 +40,10 @@ export default {
           commit('SET_DIVISION', data.data)
           return data;
         })
-        .catch(err => {
+        .catch(() => {
           commit('LOADED');
-          console.log(err)
+          return false;
+          // console.log(err)
           // return err.response.data;
         });
     },
@@ -51,7 +52,7 @@ export default {
       return api.division
         .getDetailDivision(params)
         .then(({ data }) => {
-          console.log(data)
+          // console.log(data)
           commit('LOADED');
           commit('SET_DIVISION_DETAIL', {
             id: data.division[0].id_divisi,
@@ -69,9 +70,10 @@ export default {
           })
           return data.data;
         })
-        .catch(err => {
+        .catch(() => {
           commit('LOADED');
-          console.log(err)
+          return false;
+          // console.log(err)
           // return err.response.data;
         });
     },
@@ -83,9 +85,10 @@ export default {
           commit('LOADED');
           return data;
         })
-        .catch(err => {
+        .catch(() => {
           commit('LOADED');
-          console.log(err, err.response)
+          return false;
+          // console.log(err, err.response)
           // return err.response.data;
         });
     },
@@ -97,9 +100,10 @@ export default {
           commit('LOADED');
           return data;
         })
-        .catch(err => {
+        .catch(() => {
           commit('LOADED');
-          console.log(err, err.response)
+          return false;
+          // console.log(err, err.response)
           // return err.response.data;
         });
     },
@@ -111,9 +115,10 @@ export default {
           commit('LOADED');
           return data;
         })
-        .catch(err => {
+        .catch(() => {
           commit('LOADED');
-          console.log(err, err.response)
+          return false;
+          // console.log(err, err.response)
           // return err.response.data;
         });
     }

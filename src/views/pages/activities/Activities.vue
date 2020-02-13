@@ -122,7 +122,7 @@ export default {
       this.$store.commit('activities/VIEWING');
     },
     viewData(id) {
-      console.log(id)
+      // console.log(id)
       this.selectedPopup = 'ActivitiesDetailCard';
       this.propPopup = {
         id: id

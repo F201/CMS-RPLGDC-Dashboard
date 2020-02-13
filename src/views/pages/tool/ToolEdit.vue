@@ -60,7 +60,7 @@ export default {
         readonly: true
       };
       this.$store.dispatch('tool/getDetailTool', this.id).then(data => {
-        console.log(data)
+        // console.log(data)
         this.formData = {
           name: data.nama_tools,
           img: {

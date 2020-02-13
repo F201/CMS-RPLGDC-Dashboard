@@ -65,7 +65,7 @@ export default {
         readonly: true
       };
       this.$store.dispatch('activities/getDetailActivities', this.id).then(data => {
-        console.log(data)
+        // console.log(data)
         this.formData = {
           id: data.id_org_structures,
           name: data.nama_org_structures,

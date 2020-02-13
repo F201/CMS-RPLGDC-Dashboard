@@ -34,9 +34,10 @@ export default {
           commit('SET_ORGANIZATION', data.data)
           return data;
         })
-        .catch(err => {
+        .catch(() => {
           commit('LOADED');
-          console.log(err)
+          return false;
+          // console.log(err)
           // return err.response.data;
         });
     },
@@ -49,9 +50,10 @@ export default {
           // commit('SET_ORGANIZATION', data.data)
           return data.data;
         })
-        .catch(err => {
+        .catch(() => {
           commit('LOADED');
-          console.log(err)
+          return false;
+          // console.log(err)
           // return err.response.data;
         });
     },
@@ -63,9 +65,10 @@ export default {
           commit('LOADED');
           return data;
         })
-        .catch(err => {
+        .catch(() => {
           commit('LOADED');
-          console.log(err, err.response)
+          return false;
+          // console.log(err, err.response)
           // return err.response.data;
         });
     },
@@ -77,9 +80,10 @@ export default {
           commit('LOADED');
           return data;
         })
-        .catch(err => {
+        .catch(() => {
           commit('LOADED');
-          console.log(err, err.response)
+          return false;
+          // console.log(err, err.response)
           // return err.response.data;
         });
     },
@@ -91,9 +95,10 @@ export default {
           commit('LOADED');
           return data;
         })
-        .catch(err => {
+        .catch(() => {
           commit('LOADED');
-          console.log(err, err.response)
+          return false;
+          // console.log(err, err.response)
           // return err.response.data;
         });
     }
