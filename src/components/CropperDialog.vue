@@ -80,11 +80,11 @@ export default {
     cropmodal: false,
     icon: '',
     photo: null,
-    disabled: false
+    readonly: false
   }),
   methods: {
     pickFile() {
-      if (!this.disabled) this.$refs.image.click();
+      if (!this.readonly) this.$refs.image.click();
     },
     async onChanged(event) {
       const { valid } = await this.$refs.imgPicker.validate(event);
@@ -105,8 +105,8 @@ export default {
       this.$refs.cropper.getCroppedCanvas().toBlob(blob => {
         const fileUpload = new File([blob], photoName);
         this.photo = fileUpload;
+        this.emitChange();
       });
-      this.emitChange();
       this.cropmodal = false;
     },
     rotate() {
@@ -124,7 +124,7 @@ export default {
   watch: {
     value(newVal) {
       if (newVal !== undefined) {
-        this.disabled = newVal.disabled ? newVal.disabled : false;
+        this.readonly = newVal.readonly ? newVal.readonly : false;
       };
       if (newVal !== undefined && newVal.icon) {
         this.icon = newVal.icon;

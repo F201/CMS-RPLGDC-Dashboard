@@ -1,87 +1,44 @@
 <template>
   <v-card>
     <v-card-title class="pa-5">
-      <span class="headline">Create Request Access</span>
+      <v-row no-gutters align="center">
+        <v-col>
+          <span class="headline">Detail Pendaftar</span>
+        </v-col>
+        <v-col align="end">
+          <v-chip
+            class="ma-2"
+            color="green"
+            text-color="white"
+            v-if="status1"
+          >
+            <v-avatar left>
+              <v-icon>mdi-checkbox-marked-circle</v-icon>
+            </v-avatar>
+            Lulus 1
+          </v-chip>
+          <v-chip
+            class="ma-2"
+            color="green"
+            text-color="white"
+            v-if="status2"
+          >
+            <v-avatar left>
+              <v-icon>mdi-checkbox-marked-circle</v-icon>
+            </v-avatar>
+            Lulus 2
+          </v-chip>
+        </v-col>
+      </v-row>
     </v-card-title>
-    <v-container>
-      <v-row>
-        <v-col cols="3">
-          <img v-if="icon" :src="icon" height="130" width="130" />
-          <img v-else src="@/assets/square.png" height="130" />
-        </v-col>
-        <v-col>
-          <v-text-field
-            label="Nama"
-            outlined
-          ></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-text-field
-            label="Tanggal Lahir"
-            outlined
-          ></v-text-field>
-        </v-col>
-        <v-col>
-          <v-text-field
-            label="Jenis Kelamin"
-            outlined
-          ></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-text-field
-            label="Jurusan"
-            outlined
-          ></v-text-field>
-        </v-col>
-        <v-col>
-          <v-text-field
-            label="Angkatan"
-            outlined
-          ></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-text-field
-            label="Divisi"
-            outlined
-          ></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-text-field
-            label="CV"
-            outlined
-          ></v-text-field>
-        </v-col>
-        <v-col>
-          <v-text-field
-            label="Motivation Letter"
-            outlined
-          ></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-textarea
-            label="Portofolio"
-            outlined
-          ></v-textarea>
-        </v-col>
-      </v-row>
-    </v-container>
+    <recruitment-form v-model="formData" />
     <v-card-actions>
       <v-row no-gutters>
         <v-col align="center">
-          <v-btn color="green" text @click="onSubmit">Lolos Tahap 1</v-btn>
-      <v-btn color="red" text @click="onSubmit">Undo Tahap 1</v-btn>
-      <v-btn color="green" text @click="onSubmit">Lolos Tahap 2</v-btn>
-      <v-btn color="red" text @click="onSubmit">Undo Tahap 2</v-btn>
+          <v-btn class="mx-2" color="green" dark v-if="!status1" @click="onLolos(1)">Lolos Tahap 1</v-btn>
+          <v-btn class="mx-2" color="red" dark v-else-if="status1 && !status2" outlined @click="onUndo(1)">Undo Tahap 1</v-btn>
+          <v-btn class="mx-2" color="green" dark v-if="status1 && !status2" outlined @click="onLolos(2)">Lolos Tahap 2</v-btn>
+          <v-btn class="mx-2" color="red" dark v-else-if="status1 && status2" outlined @click="onUndo(2)">Undo Tahap 2</v-btn>
         </v-col>
       </v-row>
       <!-- <v-spacer></v-spacer> -->
@@ -91,27 +48,55 @@
 </template>
 
 <script>
+import RecruitmentForm from './RecruitmentForm';
 
 export default {
+  props: ['id'],
+  components: {
+    RecruitmentForm
+  },
   data: () => ({
-    icon: '',
-    isEdit: false,
-    photo: null,
+    formData: null,
+    status1: false,
+    status2: false
   }),
   methods: {
-    onSubmit() {
-
+    onLolos(step) {
+      if (step === 1) this.$store.dispatch('recruitment/setLulusThp1', this.id);
+      else this.$store.dispatch('recruitment/setLulusThp2', this.id);
+      this.fetch()
     },
-    pickFile() {
-      this.$refs.image.click();
+    onUndo(step) {
+      if (step === 1) this.$store.dispatch('recruitment/undoLulusThp1', this.id);
+      else this.$store.dispatch('recruitment/undoLulusThp2', this.id);
+      this.fetch()
     },
-    onChanged(event) {
-      if (event.target.files.length){
-        this.photo = event.target.files[0];
-        this.$refs.cropper.replace(URL.createObjectURL(this.photo));
-        this.cropmodal = true;
-      }
+    fetch() {
+      this.$store.dispatch('recruitment/getDetailRecruitment', this.id).then(res => {
+        this.status1= res.status1,
+        this.status2= res.status2,
+        this.formData = {
+          name: res.nama_tools,
+          nim: res.nim,
+          divisi: res.divisi,
+          angkatan: res.angkatan,
+          gender: res.jenis_kelamin,
+          tgl: res.tanggal_lahir,
+          ml: res.motivation_letter,
+          cv: res.cv,
+          portofolio: res.portofolio,
+          img: {
+            icon: res.foto_profile,
+            photo: null,
+            readonly: true
+          },
+          readonly: true
+        }
+      })
     }
+  },
+  created() {
+    this.fetch()
   }
 }
 </script>

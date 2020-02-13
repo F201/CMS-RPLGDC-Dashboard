@@ -1,4 +1,4 @@
-const ls = sessionStorage;
+const ls = localStorage;
 
 export default {
   get() {

@@ -6,7 +6,7 @@ export default {
       to: '/'
     },
     {
-      icon: 'mdi-account-group',
+      icon: 'mdi-file-account',
       title: 'Recruitment',
       to: '/recruitment'
     },
@@ -14,6 +14,16 @@ export default {
       icon: 'mdi-account-tie',
       title: 'Organization',
       to: '/organization'
+    },
+    {
+      icon: 'mdi-office-building',
+      title: 'Division',
+      to: '/division'
+    },
+    {
+      icon: 'mdi-package',
+      title: 'Product',
+      to: '/product'
     },
     {
       icon: 'mdi-electron-framework',

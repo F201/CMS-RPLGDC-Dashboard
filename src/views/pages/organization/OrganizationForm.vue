@@ -14,7 +14,7 @@
                   outlined
                   v-model="formData.name"
                   :error-messages="errors"
-                  :disabled="formData.disabled"
+                  :readonly="formData.readonly"
                   @change="emitChange"
                 ></v-text-field>
               </ValidationProvider>
@@ -26,7 +26,7 @@
                   outlined
                   v-model="formData.jabatan"
                   :error-messages="errors"
-                  :disabled="formData.disabled"
+                  :readonly="formData.readonly"
                   @change="emitChange"
                 ></v-text-field>
               </ValidationProvider>
@@ -38,7 +38,7 @@
                   outlined
                   v-model="formData.order"
                   :error-messages="errors"
-                  :disabled="formData.disabled"
+                  :readonly="formData.readonly"
                   @change="emitChange"
                 ></v-text-field>
               </ValidationProvider>
@@ -66,7 +66,7 @@ export default {
       jabatan: '',
       order: 0,
       img: null,
-      disabled: false
+      readonly: false
     }
   }),
   methods: {

@@ -8,6 +8,7 @@ import "./plugins/vee-validate";
 import 'cropperjs/dist/cropper.css';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import { registerMiddleware } from './router/middleware';
 
 const options = {
   confirmButtonColor: '#fc6e20',
@@ -15,9 +16,9 @@ const options = {
 
 Vue.use(VueSweetalert2, options);
 Vue.component('vuew-VueCropper');
-// Vue.component('ValidationProvider', ValidationProvider);
-
 Vue.config.productionTip = false;
+
+registerMiddleware(router, store);
 
 new Vue({
   router,

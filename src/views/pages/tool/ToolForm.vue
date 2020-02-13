@@ -14,7 +14,7 @@
                   outlined
                   v-model="formData.name"
                   :error-messages="errors"
-                  :disabled="formData.disabled"
+                  :readonly="formData.readonly"
                   @change="emitChange"
                 ></v-text-field>
               </ValidationProvider>
@@ -40,7 +40,7 @@ export default {
     formData: {
       name: '',
       img: null,
-      disabled: false
+      readonly: false
     }
   }),
   methods: {

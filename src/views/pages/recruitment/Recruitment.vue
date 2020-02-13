@@ -10,7 +10,7 @@
         <v-tab
           v-for="(n, i) in 3"
           :key="i"
-          :href="`#tahap${i}`"
+          :href="`#status${i}`"
         >
           {{
             i == 0 ? 'Registrasi' : `Tahap ${i}`
@@ -27,26 +27,34 @@
             hide-details
           ></v-text-field>
         </v-col>
-        <v-col align="center" cols="3">
-          <v-btn @click.stop="view()" class="primary">
-            Create Request
-          </v-btn>
-        </v-col>
       </v-row>
       <v-data-table
         :headers="headers"
-        :items="items"
+        :items="dataRecruitment"
         :search="search"
+        :loading="loading"
       >
+        <template v-slot:item.foto_profile="{ item }">
+          <v-row>
+            <v-col align="center">
+              <v-img
+                :src="item.foto_profile"
+                height="70"
+                width="70"
+                lazy-src="../../../assets/square.png"
+              ></v-img>
+            </v-col>
+          </v-row>
+        </template>
         <template v-slot:item.action="{ item }">
-          <v-btn fab small elevation="2" @click="view(item.id)">
+          <v-btn fab small elevation="2" @click="view(item.id_recruitment)">
             <v-icon>mdi-dots-vertical</v-icon>
           </v-btn>
         </template>
       </v-data-table>
     </v-card>
     <v-dialog v-model="isViewing" max-width="700px">
-      <recruitment-detail-card v-if="isViewing" :id="0" />
+      <component :is="selectedPopup" v-if="isViewing" v-bind="propPopup"/>
     </v-dialog>
   </v-container>
 </template>
@@ -60,7 +68,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      dataRecruitment: 'recruitment/recruitments'
+      dataRecruitment: 'recruitment/recruitments',
+      loading: 'recruitment/loading'
     }),
     isViewing: {
       get: function() {
@@ -75,15 +84,14 @@ export default {
   data: () => ({
     tab: null,
     search: '',
-    items: [
-      { name: 'nama'}
-    ],
+    propPopup: '',
+    selectedPopup: '',
     headers: [
-      { text: 'Foto', value: 'foto_achievement' },
-      { text: 'Nama', align: 'left', value: 'name' },
-      { text: 'Tanggal Lahir', value: 'nama_pemenang' },
-      { text: 'Gender', value: 'jurusan' },
-      { text: 'Angkatan', value: 'tahun' },
+      { text: 'Foto', value: 'foto_profile', align: 'center' },
+      { text: 'Nama', align: 'left', value: 'nama_lengkap' },
+      { text: 'Tanggal Lahir', value: 'tanggal_lahir' },
+      { text: 'Gender', value: 'jenis_kelamin' },
+      { text: 'Angkatan', value: 'angkatan' },
       { text: 'Divisi', value: 'divisi' },
       { text: 'Action', value: 'action' }
       // { text: 'CV', value: 'divisi' },
@@ -93,7 +101,10 @@ export default {
   }),
   methods: {
     view(id) {
-      console.log(id)
+      this.propPopup = {
+        id: id
+      }
+      this.selectedPopup = 'RecruitmentDetailCard';
       this.$store.commit('recruitment/VIEWING');
     }
   },
@@ -102,12 +113,11 @@ export default {
   },
   watch: {
     tab(tahap){
-      let params = ''
-      if (tahap != 'tahap0') {
-        console.log('fetch tahap')
-        params = tahap
+      let params = {};
+      if (tahap != 'status0') {
+        params[tahap] = 1;
       }
-      this.$store.dispatch(`recruitment/getAllRecruitment`,params);
+      this.$store.dispatch(`recruitment/getAllRecruitment`, params);
     }
   }
 };

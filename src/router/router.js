@@ -58,6 +58,22 @@ const routes = [
         }
       },
       {
+        path: '/division',
+        name: 'division',
+        component: () => import('../views/pages/division/Division.vue'),
+        meta: {
+          middleware: { auth: true },
+        }
+      },
+      {
+        path: '/product',
+        name: 'product',
+        component: () => import('../views/pages/product/Product.vue'),
+        meta: {
+          middleware: { auth: true },
+        }
+      },
+      {
         path: '/organization',
         name: 'organization',
         component: () => import('../views/pages/organization/Organization.vue'),

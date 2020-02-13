@@ -2,18 +2,34 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import menu from '../utils/menu';
 import achievement from './achievement';
+import achievMember from './achievMember';
+import activities from './activities';
+import actDivision from './actDivision';
+import division from './division';
+import divisionTool from './divisionTool';
 import recruitment from './recruitment';
 import organization from './organization';
 import tool from './tool';
+import product from './product';
+import productTool from './productTool';
+import auth from './auth';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
+    auth,
+    activities,
+    actDivision,
     achievement,
+    achievMember,
+    division,
+    divisionTool,
     organization,
     recruitment,
-    tool
+    tool,
+    product,
+    productTool
   },
   state: {
     sidebar: true,

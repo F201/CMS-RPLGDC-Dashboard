@@ -10,7 +10,7 @@
         <v-btn color="primary darken-1" text @click="close">Close</v-btn>
         <v-btn
           color="primary darken-1"
-          :disabled="invalid || !validated"
+          :readonly="invalid || !validated"
           @click="onSubmit"
         >
           Submit
@@ -61,8 +61,8 @@ export default {
     },
     fetch() {
       this.formData = {
-        img: {disabled: true},
-        disabled: true
+        img: {readonly: true},
+        readonly: true
       };
       this.$store.dispatch('organization/getDetailOrganization', this.id).then(data => {
         this.formData = {
@@ -74,7 +74,7 @@ export default {
             photo: null,
           },
           order: data.order_org_structures,
-          disabled: false
+          readonly: false
         }
       });
     }
