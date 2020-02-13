@@ -10,6 +10,18 @@
             <v-col cols="12">
               <ValidationProvider rules="required" v-slot="{ errors }">
                 <v-text-field
+                  label="Nama Lomba"
+                  outlined
+                  v-model="formData.nama_lomba"
+                  :error-messages="errors"
+                  :readonly="formData.readonly"
+                  @change="emitChange"
+                ></v-text-field>
+              </ValidationProvider>
+            </v-col>
+            <v-col cols="12">
+              <ValidationProvider rules="required" v-slot="{ errors }">
+                <v-text-field
                   label="Judul"
                   outlined
                   v-model="formData.judul"
@@ -65,7 +77,10 @@ export default {
       judul: '',
       tahun: '',
       peringkat: '',
-      img: null,
+      nama_lomba: '',
+      img: {
+        ratio: 4/3
+      },
       readonly: false
     }
   }),

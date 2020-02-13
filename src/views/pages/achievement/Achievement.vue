@@ -110,7 +110,8 @@ export default {
     selectedPopup: null,
     headers: [
       { text: 'Foto', value: 'foto_achievement' },
-      { text: 'Judul', align: 'left', value: 'judul' },
+      { text: 'Nama Lomba', align: 'left', value: 'nama_lomba' },
+      { text: 'Judul Product', align: 'left', value: 'judul' },
       { text: 'Tahun', value: 'tahun' },
       { text: 'Peringkat', value: 'peringkat' },
       { text: 'Action', value: 'action' }

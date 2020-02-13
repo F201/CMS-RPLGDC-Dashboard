@@ -122,7 +122,7 @@ export default {
       this.$emit('input', {photo: this.photo});
     },
     changeVal(newVal) {
-      if (newVal.ratio) {
+      if (newVal) {
         this.ratio = newVal.ratio ? newVal.ratio : 1 / 1;
       };
     }

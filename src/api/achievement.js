@@ -13,7 +13,7 @@ export default {
   deleteAchievement(id) {
     return ApiGeneral.delete(`/achievements/${id}`);
   },
-  editAchievement(id) {
-    return ApiGeneral.put(`/achievements/${id}`);
+  editAchievement({id, data}) {
+    return ApiGeneral.put(`/achievements/${id}`, data);
   }
 }

@@ -45,6 +45,7 @@ export default {
         form.append('judul', this.formData.judul);
         form.append('tahun', this.formData.tahun);
         form.append('peringkat', this.formData.peringkat);
+        form.append('nama_lomba', this.formData.nama_lomba);
         form.append('foto_achievement', this.formData.img.photo);
         this.$store.dispatch('achievement/createAchievement', form)
           .then(res => {

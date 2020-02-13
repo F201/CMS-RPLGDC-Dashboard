@@ -72,16 +72,31 @@ export default {
           // console.log(data)
           return data;
         })
-        .catch(err => {
+        .catch(() => {
           commit('LOADED');
           // // console.log(err)
-          return err.response.data;
+          return false;
         });
     },
     createAchievement({commit}, data) {
       commit('LOADING');
       return api.achievement
         .createAchievement(data)
+        .then(({data}) => {
+          commit('LOADED');
+          return data;
+        })
+        .catch(() => {
+          commit('LOADED');
+          return false;
+          // console.log(err, err.response)
+          // return err.response.data;
+        });
+    },
+    editAchievement({commit}, data) {
+      commit('LOADING');
+      return api.achievement
+        .editAchievement(data)
         .then(({data}) => {
           commit('LOADED');
           return data;

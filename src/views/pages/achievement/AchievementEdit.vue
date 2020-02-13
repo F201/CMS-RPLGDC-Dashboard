@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title class="pa-5">
-      <span class="headline">Edit Organization</span>
+      <span class="headline">Edit Achievemenet</span>
     </v-card-title>
     <ValidationObserver ref="obs" v-slot="{ invalid, validated }">
       <achievement-form v-model="formData"/>
@@ -43,39 +43,47 @@ export default {
       const isValid = await this.$refs.obs.validate();
       if (isValid) {
         let form = new FormData();
-        form.append('nama_org_structures', this.formData.name);
-        form.append('posisi_org_structures', this.formData.jabatan);
-        form.append('order_org_structures', this.formData.order);
-        form.append('foto_org_structures', this.formData.img.photo);
-        this.$store.dispatch('organization/editOrganization', { id: this.formData.id, data: form })
+        form.append('judul', this.formData.judul);
+        form.append('tahun', this.formData.tahun);
+        form.append('peringkat', this.formData.peringkat);
+        form.append('nama_lomba', this.formData.nama_lomba);
+        form.append('foto_achievement', this.formData.img.photo);
+        this.$store.dispatch('achievement/editAchievement', { id: this.formData.id, data: form })
           .then(res => {
             if (res.data !== undefined) this.$swal('Success Edit', 'Data edited!', 'success');
             else this.$swal('Error', 'Error on edit data!', 'error')
-            this.$store.commit('organization/VIEWED');
-            this.$store.dispatch('organization/getAllOrganization');
+            this.$store.commit('achievement/VIEWED');
+            this.$store.dispatch('achievement/getAllAchievement');
           });
       }
     },
     close() {
-      this.$store.commit('organization/VIEWED');
+      this.$store.commit('achievement/VIEWED');
     },
     fetch() {
       this.formData = {
-        img: {readonly: true},
+        img: {
+          readonly: true,
+          ratio: 4/3
+        },
         readonly: true
       };
-      this.$store.dispatch('organization/getDetailOrganization', this.id).then(data => {
-        // console.log(data)
-        this.formData = {
-          id: data.id_org_structures,
-          name: data.nama_org_structures,
-          jabatan: data.posisi_org_structures,
-          img: {
-            icon: data.foto_org_structures,
-            photo: null,
-          },
-          order: data.order_org_structures,
-          readonly: false
+      this.$store.dispatch('achievement/getDetailAchievement', this.id).then(data => {
+        console.log(data)
+        if (data) {
+          this.formData = {
+            id: data.achievement[0].id_achievement,
+            judul: data.achievement[0].judul,
+            tahun: data.achievement[0].tahun,
+            peringkat: data.achievement[0].peringkat,
+            nama_lomba: data.achievement[0].nama_lomba,
+            img: {
+              ratio: 4/3,
+              icon: data.achievement[0].foto_achievement,
+              photo: null,
+            },
+            readonly: false
+          }
         }
       });
     }
