@@ -21,6 +21,11 @@ export default {
   setLulusThp2(id) {
     return ApiGeneral.put(`/recruitment/grade2/${id}`)
   },
+  getSumThp(params) {
+    return ApiGeneral.get(`/recruitment/sumpass` ,{
+      params: params
+    })
+  },
   getSumThp1() {
     return ApiGeneral.get(`/recruitment/sumpass1`)
   },

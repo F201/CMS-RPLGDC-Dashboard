@@ -1,9 +1,34 @@
 <template>
   <v-navigation-drawer
-    :clipped="$vuetify.breakpoint.mdAndUp"
     app
-    v-model="drawer"
-  >
+    permanent
+    :mini-variant.sync="mini"
+    mini-variant-width="80"
+    expand-on-hover
+    dark
+    color="black"
+  > 
+    <v-list-item class="my-5">
+        <v-list-item-content>
+          <v-row :justify="mini ? 'center' : 'left'">
+            <v-img
+              v-if="mini"
+              :src="require('@/assets/logo_icon.png')"
+              max-height="100"
+              max-width="50"
+              contain
+            ></v-img>
+            <v-img
+              v-else
+              class="ml-3"
+              :src="require('@/assets/logo_drawer.png')"
+              max-height="100"
+              max-width="200"
+              contain
+            ></v-img>
+          </v-row>
+        </v-list-item-content>
+      </v-list-item>
     <v-list dense>
       <template v-for="(item, index) in menu">
         <template>
@@ -64,7 +89,8 @@ import { mapGetters } from 'vuex';
 export default {
   data: () => ({
     selectedPopup: null,
-    propsPopup: null
+    propsPopup: null,
+    mini: true,
   }),
   computed: {
     drawer: {
@@ -86,6 +112,11 @@ export default {
     ...mapGetters({
       menu: 'listMenu'
     })
+  },
+  methods: {
+    drawerOn(e) {
+      console.log(e)
+    }
   }
 };
 </script>

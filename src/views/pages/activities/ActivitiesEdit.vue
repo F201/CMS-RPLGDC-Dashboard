@@ -67,16 +67,17 @@ export default {
       this.$store.dispatch('activities/getDetailActivities', this.id).then(data => {
         // console.log(data)
         this.formData = {
-          id: data.id_org_structures,
-          name: data.nama_org_structures,
-          jabatan: data.posisi_org_structures,
+          id: data.activities[0].id_activities,
+          name: data.activities[0].nama_activities,
+          tanggal: data.activities[0].tanggal,
+          deskripsi: data.activities[0].deskripsi,
           img: {
             ratio: 4/3,
             required: false,
-            icon: data.foto_org_structures,
+            icon: data.activities[0].gambar_activities,
             photo: null,
           },
-          order: data.order_org_structures,
+          divisions: data.activities[0].divisions,
           readonly: false
         }
       });

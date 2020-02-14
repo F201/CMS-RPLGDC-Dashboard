@@ -1,9 +1,10 @@
 <template>
   <v-layout>
     <left-navbar/>
-    <top-navbar/>
     <v-content>
-      <v-container fluid>
+      <top-navbar/>
+      <v-container>
+        
         <router-view/>
       </v-container>
     </v-content>

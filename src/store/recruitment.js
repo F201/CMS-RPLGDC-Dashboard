@@ -117,6 +117,21 @@ export default {
           // return err.response.data;
         });
     },
+    getSumThp({ commit }, params) {
+      commit('LOADING');
+      return api.recruitment
+        .getSumThp(params)
+        .then(({ data }) => {
+          commit('LOADED');
+          return data;
+        })
+        .catch(() => {
+          commit('LOADED');
+          return false;
+          // console.log(err.response)
+          // return err.response.data;
+        });
+    },
     getSumThp1({ commit }) {
       commit('LOADING');
       return api.recruitment
