@@ -13,7 +13,7 @@ export default {
   deleteActivities(id) {
     return ApiGeneral.delete(`/activities/${id}`);
   },
-  editActivities(id) {
-    return ApiGeneral.put(`/activities/${id}`);
+  editActivities({id, data}) {
+    return ApiGeneral.put(`/activities/${id}`, data);
   }
 }
