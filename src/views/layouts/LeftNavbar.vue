@@ -115,7 +115,7 @@ export default {
   },
   methods: {
     drawerOn(e) {
-      console.log(e)
+      //console.log(e)
     }
   }
 };
