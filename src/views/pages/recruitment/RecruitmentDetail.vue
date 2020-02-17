@@ -110,19 +110,26 @@ export default {
       const res = (step === 1) 
         ? this.$store.dispatch('recruitment/setLulusThp1', this.id)
         : this.$store.dispatch('recruitment/setLulusThp2', this.id);
-      if (res) this.$swal('Success', `Success edit status: ${this.formData.nim}`, 'success')
-      else this.$swal('Error', 'Error on create data!', 'error')
-      this.fetch()
+      if (res) this.$swal('Success', `Success edit status: ${this.formData.nim}`, 'success').then(() =>{
+        this.fetch()
+      })
+      else this.$swal('Error', 'Error on create data!', 'error').then(() =>{
+        this.fetch()
+      })
     },
     async onUndo(step) {
       const res = (step === 1) 
         ? this.$store.dispatch('recruitment/undoLulusThp1', this.id)
         : this.$store.dispatch('recruitment/undoLulusThp2', this.id);
-      if (res) this.$swal('Success', `Success edit status: ${this.formData.nim}`, 'success')
-      else this.$swal('Error', 'Error on create data!', 'error')
-      this.fetch()
+      if (res) this.$swal('Success', `Success edit status: ${this.formData.nim}`, 'success').then(() =>{
+        this.fetch()
+      })
+      else this.$swal('Error', 'Error on create data!', 'error').then(() =>{
+        this.fetch()
+      })
     },
     fetch() {
+      this.$store.dispatch('recruitment/getAllRecruitment');
       this.$store.dispatch('recruitment/getDetailRecruitment', this.id).then(res => {
         this.status1= res.status1,
         this.status2= res.status2,
@@ -133,6 +140,7 @@ export default {
           angkatan: res.angkatan,
           gender: res.jenis_kelamin,
           tgl: res.tanggal_lahir,
+          jurusan: res.jurusan,
           ml: res.motivation_letter,
           cv: res.cv,
           portofolio: res.portofolio,

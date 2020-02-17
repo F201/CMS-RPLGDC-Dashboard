@@ -61,6 +61,9 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <v-dialog v-model="isImgViewing" max-width="900px">
+      <img-viewer v-if="isImgViewing" :url="showUrl"></img-viewer>
+    </v-dialog>
   </div>
 </template>
 
@@ -68,12 +71,14 @@
 import VueCropper from 'vue-cropperjs';
 import 'cropperjs/dist/cropper.css';
 import { ValidationProvider } from 'vee-validate';
+import imgViewer from './imgViewer';
 
 export default {
   props: ['value'],
   components: {
     VueCropper,
-    ValidationProvider
+    ValidationProvider,
+    imgViewer
   },
   data: () => ({
     cropmodal: false,
@@ -83,9 +88,21 @@ export default {
     ratio: 1/1,
     readonly: false
   }),
+  computed: {
+    isImgViewing: {
+      get: function() {
+        return this.$store.getters['imgView'];
+      },
+      set: function() {
+        this.$store.commit('IMG_VIEWED');
+      }
+    },
+  },
   methods: {
-    pickFile() {
+    pickFile(event) {
+      console.log(event)
       if (!this.readonly) this.$refs.image.click();
+      else if(event.target.src) this.showImg(event.target.src)
     },
     async onChanged(event) {
       const { valid } = await this.$refs.imgPicker.validate(event);
@@ -125,7 +142,11 @@ export default {
       if (newVal) {
         this.ratio = newVal.ratio ? newVal.ratio : 1 / 1;
       };
-    }
+    },
+    showImg(url) {
+      this.showUrl = url;
+      this.$store.commit('IMG_VIEWING');
+    },
   },
   watch: {
     value(newVal) {

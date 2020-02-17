@@ -33,6 +33,7 @@
         :items="dataRecruitment"
         :search="search"
         :loading="loading"
+        multi-sort
       >
         <template v-slot:item.foto_profile="{ item }">
           <v-row>
@@ -45,6 +46,14 @@
               ></v-img>
             </v-col>
           </v-row>
+        </template>
+        <template v-slot:item.status="{ item }">
+          <v-chip color="green" small class="white--text" v-if="item.status1">
+            1
+          </v-chip>
+          <v-chip color="green" small class="white--text" v-if="item.status2">
+            2
+          </v-chip>
         </template>
         <template v-slot:item.action="{ item }">
           <v-btn fab small elevation="2" @click="view(item.id_recruitment)">
@@ -93,6 +102,7 @@ export default {
       { text: 'Gender', value: 'jenis_kelamin' },
       { text: 'Angkatan', value: 'angkatan' },
       { text: 'Divisi', value: 'divisi' },
+      { text: 'Status', value: 'status' },
       { text: 'Action', value: 'action' }
       // { text: 'CV', value: 'divisi' },
       // { text: 'Motivaiton Letter', value: 'divisi' },

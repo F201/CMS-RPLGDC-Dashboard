@@ -1,11 +1,11 @@
 <template>
-  <v-card elevation="5" style="height:100%">
-      <v-row justify="center" align="center" class="title">
-        <v-col cols="12" align="center">
-          <v-icon>mdi-poll</v-icon>
-          Statistik Persebaran Divisi
-        </v-col>
-      </v-row>
+  <v-card elevation="5" style="height:700px">
+    <v-row justify="center" align="center" class="title">
+      <v-col cols="12" align="center">
+        <v-icon>mdi-poll</v-icon>
+        Statistik Persebaran Divisi
+      </v-col>
+    </v-row>
     <v-row no-gutters justify="center" align="start" style="height:60%" v-if="doneFetch">
       <v-col cols="2" align="center" v-for="(col, idx) in divisionStat" :key="idx" style="height:100%">
         <v-row align="end" justify="center" style="height:100%" no-gutters>

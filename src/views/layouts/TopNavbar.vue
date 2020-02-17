@@ -1,16 +1,18 @@
 <template>
-  <v-row class="mx-5 mb-5 body-1 font-weight-black">
-    <v-col>
-      {{dateTime}} - <span class="primary--text">{{liveTime}}</span> 
-    </v-col>
-  </v-row>
-    <!-- <v-app-bar
-      app
-      :clipped-left="$vuetify.breakpoint.mdAndUp"
-      elevation="0"
+    <v-app-bar
+      short
       flat
+      color="white"
     >
-      <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
+      <v-row class="mx-5 body-1 font-weight-black" align="center">
+        <v-col cols="auto" v-if="$vuetify.breakpoint.mdAndDown">
+          <v-app-bar-nav-icon @click.stop="toggleSidebar()"></v-app-bar-nav-icon>
+        </v-col>
+        <v-col>
+          {{dateTime}} - <span class="primary--text">{{liveTime}}</span> 
+        </v-col>
+      </v-row>
+      <!-- <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
         <v-row no-gutters align="center">
           <v-col cols="2">
             <v-app-bar-nav-icon @click.stop="toggleSidebar()"></v-app-bar-nav-icon>
@@ -51,8 +53,8 @@
           <v-btn color="primary" text @click="logout">Logout</v-btn>
         </v-card-actions>
       </v-card>
-    </v-menu>
-    </v-app-bar> -->
+    </v-menu> -->
+  </v-app-bar>
 </template>
 <script>
 import { mapGetters } from 'vuex';
@@ -70,9 +72,9 @@ export default {
     setInterval(this.getNow, 1000);
   },
   methods: {
-    // toggleSidebar() {
-    //   this.$store.dispatch('toggleSidebar');
-    // },
+    toggleSidebar() {
+      this.$store.dispatch('toggleSidebar');
+    },
     // logout() {
     //   this.$store.dispatch('auth/logout').then(() => {
     //     this.$router.push('/login');

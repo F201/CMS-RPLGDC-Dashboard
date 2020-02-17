@@ -4,7 +4,6 @@
     <v-content>
       <top-navbar/>
       <v-container>
-        
         <router-view/>
       </v-container>
     </v-content>
