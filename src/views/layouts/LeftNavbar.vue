@@ -1,12 +1,12 @@
 <template>
   <v-navigation-drawer
     app
-    permanent
     :mini-variant.sync="mini"
     mini-variant-width="80"
     expand-on-hover
     dark
     color="black"
+    v-model="drawer"
   > 
     <v-list-item class="my-5">
         <v-list-item-content>

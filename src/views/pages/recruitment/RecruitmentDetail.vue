@@ -110,17 +110,23 @@ export default {
       const res = (step === 1) 
         ? this.$store.dispatch('recruitment/setLulusThp1', this.id)
         : this.$store.dispatch('recruitment/setLulusThp2', this.id);
-      if (res) this.$swal('Success', `Success edit status: ${this.formData.nim}`, 'success')
-      else this.$swal('Error', 'Error on create data!', 'error')
-      this.fetch()
+      if (res) this.$swal('Success', `Success edit status: ${this.formData.nim}`, 'success').then(() =>{
+        this.fetch()
+      })
+      else this.$swal('Error', 'Error on create data!', 'error').then(() =>{
+        this.fetch()
+      })
     },
     async onUndo(step) {
       const res = (step === 1) 
         ? this.$store.dispatch('recruitment/undoLulusThp1', this.id)
         : this.$store.dispatch('recruitment/undoLulusThp2', this.id);
-      if (res) this.$swal('Success', `Success edit status: ${this.formData.nim}`, 'success')
-      else this.$swal('Error', 'Error on create data!', 'error')
-      this.fetch()
+      if (res) this.$swal('Success', `Success edit status: ${this.formData.nim}`, 'success').then(() =>{
+        this.fetch()
+      })
+      else this.$swal('Error', 'Error on create data!', 'error').then(() =>{
+        this.fetch()
+      })
     },
     fetch() {
       this.$store.dispatch('recruitment/getAllRecruitment');
