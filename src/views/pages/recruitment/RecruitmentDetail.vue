@@ -123,6 +123,7 @@ export default {
       this.fetch()
     },
     fetch() {
+      this.$store.dispatch('recruitment/getAllRecruitment');
       this.$store.dispatch('recruitment/getDetailRecruitment', this.id).then(res => {
         this.status1= res.status1,
         this.status2= res.status2,
@@ -133,6 +134,7 @@ export default {
           angkatan: res.angkatan,
           gender: res.jenis_kelamin,
           tgl: res.tanggal_lahir,
+          jurusan: res.jurusan,
           ml: res.motivation_letter,
           cv: res.cv,
           portofolio: res.portofolio,

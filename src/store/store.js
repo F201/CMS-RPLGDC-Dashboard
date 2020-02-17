@@ -37,6 +37,7 @@ export default new Vuex.Store({
     sidebar: true,
     viewing: false,
     isPopUp: false,
+    imgView: false,
     listMenu: menu['default']
   },
   mutations: {
@@ -54,7 +55,13 @@ export default new Vuex.Store({
     },
     POPED_UP(state) {
       state.isPopUp = false;
-    }
+    },
+    IMG_VIEWING(state) {
+      state.imgView = true;
+    },
+    IMG_VIEWED(state) {
+      state.imgView = false;
+    },
   },
   actions: {
     toggleSidebar({ state, commit }) {
@@ -65,6 +72,7 @@ export default new Vuex.Store({
     sidebar: state => state.sidebar,
     viewing: state => state.viewing,
     isPopUp: state => state.isPopUp,
-    listMenu: state => state.listMenu
+    listMenu: state => state.listMenu,
+    imgView: state => state.imgView
   }
 });

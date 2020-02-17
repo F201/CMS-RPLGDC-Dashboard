@@ -54,6 +54,32 @@
         </v-col>
       </v-row>
       <v-row justify="center" class="py-0">
+        <v-col cols="7">
+          <ValidationProvider rules="required" v-slot="{ errors }">
+            <v-text-field
+              label="Jurusan"
+              outlined
+              v-model="formData.jurusan"
+              :error-messages="errors"
+              :readonly="formData.readonly"
+              @change="emitChange"
+            ></v-text-field>
+          </ValidationProvider>
+        </v-col>
+        <v-col cols="3">
+          <ValidationProvider rules="required" v-slot="{ errors }">
+            <v-text-field
+              label="Angkatan"
+              outlined
+              v-model="formData.angkatan"
+              :error-messages="errors"
+              :readonly="formData.readonly"
+              @change="emitChange"
+            ></v-text-field>
+          </ValidationProvider>
+        </v-col>
+      </v-row>
+      <v-row justify="center" class="py-0">
         <v-col cols="5">
           <ValidationProvider rules="required" v-slot="{ errors }">
             <v-text-field
@@ -95,14 +121,13 @@
           </template>
           <template v-else>
             <!-- <a :href="formData.cv" target="_blank"> -->
-              <v-btn block color="primary" outlined :href="formData.cv" target="_blank">
+              <v-btn block color="primary" outlined @click="downloadPdf(formData.cv)" target="_blank">
                 CV
               </v-btn>
             <!-- </a> -->
           </template>
         </v-col>
         <v-col cols="5">
-          
           <template v-if="!formData.readonly">
             <ValidationProvider rules="required" v-slot="{ errors }">
               <v-text-field
@@ -117,7 +142,7 @@
           </template>
           <template v-else>
             <!-- <a :href="formData.cv" target="_blank"> -->
-              <v-btn block color="primary" outlined :href="formData.ml" target="_blank">
+              <v-btn block color="primary" outlined @click="downloadPdf(formData.ml)" target="_blank">
                 Motivation Letter
               </v-btn>
             <!-- </a> -->
@@ -176,6 +201,9 @@ export default {
   methods: {
     emitChange() {
       this.$emit('input', this.formData);
+    },
+    downloadPdf(file) {
+      window.open(file.replace('dl.','www.'));
     }
   },
   watch:{
