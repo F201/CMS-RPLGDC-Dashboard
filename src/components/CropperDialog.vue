@@ -100,7 +100,6 @@ export default {
   },
   methods: {
     pickFile(event) {
-      console.log(event)
       if (!this.readonly) this.$refs.image.click();
       else if(event.target.src) this.showImg(event.target.src)
     },
