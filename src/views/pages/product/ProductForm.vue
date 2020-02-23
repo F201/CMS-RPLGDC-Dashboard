@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import CropperDialog from '@/components/CropperDialog';
+import CropperDialog from '@/views/components/CropperDialog';
 import { ValidationProvider } from 'vee-validate';
 
 export default {
