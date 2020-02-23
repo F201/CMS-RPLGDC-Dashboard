@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import DoughnutChart from '@/components/DonutChart';
+import DoughnutChart from '@/views/components/DonutChart';
 
 export default {
   components: {

@@ -98,7 +98,7 @@ export default {
     headers: [
       { text: 'Foto', value: 'foto_profile', align: 'center' },
       { text: 'Nama', align: 'left', value: 'nama_lengkap' },
-      { text: 'Tanggal Lahir', value: 'tanggal_lahir' },
+      { text: 'NIM', align: 'center', value: 'nim' },
       { text: 'Gender', value: 'jenis_kelamin' },
       { text: 'Angkatan', value: 'angkatan' },
       { text: 'Divisi', value: 'divisi' },
